@@ -1,0 +1,195 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #677083;
+  --line: #e4e8f0;
+  --primary: #2457ff;
+  --primary-dark: #153ab8;
+  --danger: #cf2e2e;
+  --good: #0b7a47;
+  --possible: #9a6700;
+  --bad: #a12323;
+  --shadow: 0 16px 40px rgba(23, 32, 51, 0.08);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top left, #e9efff, transparent 35%), var(--bg);
+}
+
+.app-header {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 42px 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+h1, h2 { margin: 0; }
+h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1; }
+h2 { font-size: 20px; }
+.subtitle { color: var(--muted); font-size: 17px; max-width: 650px; }
+
+.status-card {
+  min-width: 260px;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 16px;
+}
+.status-pill {
+  display: inline-flex;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+}
+.status-card small {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  word-break: break-word;
+}
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto 60px;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.wide { grid-column: 1 / -1; }
+.panel-heading {
+  margin-bottom: 18px;
+}
+.panel-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.form-grid, .run-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+textarea, input, select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 13px;
+  font: inherit;
+  color: var(--text);
+  background: #fff;
+}
+textarea {
+  min-height: 92px;
+  resize: vertical;
+  grid-column: 1 / -1;
+}
+label {
+  color: var(--muted);
+  font-size: 14px;
+  display: grid;
+  gap: 6px;
+}
+button {
+  border: 0;
+  background: var(--primary);
+  color: white;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+button:hover { transform: translateY(-1px); }
+button:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+.secondary { background: #eef2ff; color: var(--primary-dark); }
+.danger { background: var(--danger); }
+.message { min-height: 22px; color: var(--muted); font-weight: 650; }
+.search { max-width: 330px; }
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+th, td {
+  padding: 14px 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th {
+  background: #f8faff;
+  color: #38445a;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr:last-child td { border-bottom: 0; }
+.score {
+  font-weight: 900;
+  font-size: 20px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.good_match { background: #e8f7ef; color: var(--good); }
+.possible_match { background: #fff4d6; color: var(--possible); }
+.bad_match { background: #fde8e8; color: var(--bad); }
+.reasons {
+  margin: 0;
+  padding-left: 18px;
+}
+.reasons li { margin-bottom: 4px; }
+
+@media (max-width: 800px) {
+  .app-header, .controls { flex-direction: column; align-items: stretch; }
+  .layout, .form-grid, .run-grid { grid-template-columns: 1fr; }
+  .status-card { min-width: 0; }
+  .search { max-width: 100%; }
+}

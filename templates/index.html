@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company Lead Matcher</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">AI + SQLite lead scoring</p>
+      <h1>Company Lead Matcher</h1>
+      <p class="subtitle">Store companies and leads, run match assessments, and review ranked results.</p>
+    </div>
+    <div class="status-card">
+      <span id="apiStatus" class="status-pill">Checking...</span>
+      <small id="dbPath"></small>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Add Company</h2>
+      </div>
+      <form id="companyForm" class="form-grid">
+        <input name="name" placeholder="Company name" required />
+        <input name="email" placeholder="Email" type="email" />
+        <input name="industry" placeholder="Industry" required />
+        <input name="location" placeholder="Location" required />
+        <textarea name="description" placeholder="Description" required></textarea>
+        <button type="submit">Add Company</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Add Lead</h2>
+      </div>
+      <form id="leadForm" class="form-grid">
+        <input name="name" placeholder="Lead name" required />
+        <input name="email" placeholder="Email" type="email" />
+        <input name="age" placeholder="Age" type="number" required />
+        <input name="gender" placeholder="Gender" />
+        <input name="working_status" placeholder="Working status" required />
+        <input name="country" placeholder="Country" required />
+        <input name="city" placeholder="City" required />
+        <input name="family" placeholder="Family" />
+        <select name="income_status" required>
+          <option value="">Income status</option>
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+        <button type="submit">Add Lead</button>
+      </form>
+    </section>
+
+    <section class="panel wide">
+      <div class="panel-heading controls">
+        <div>
+          <h2>Run Matching</h2>
+          <p>Choose all records or filter to one company/lead.</p>
+        </div>
+        <button id="refreshBtn" class="secondary">Refresh Data</button>
+      </div>
+
+      <div class="run-grid">
+        <label>
+          Company
+          <select id="companySelect"><option value="">All companies</option></select>
+        </label>
+        <label>
+          Lead
+          <select id="leadSelect"><option value="">All leads</option></select>
+        </label>
+        <button id="runBtn">Run Match</button>
+        <button id="clearBtn" class="danger">Clear Match History</button>
+      </div>
+      <p id="message" class="message"></p>
+    </section>
+
+    <section class="panel wide">
+      <div class="panel-heading controls">
+        <div>
+          <h2>Ranked Matches</h2>
+          <p>Results are saved in SQLite and shown highest score first.</p>
+        </div>
+        <input id="searchInput" class="search" placeholder="Search company, lead, verdict..." />
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Verdict</th>
+              <th>Company</th>
+              <th>Lead</th>
+              <th>Reasons</th>
+              <th>Action</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="matchesBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
